@@ -1,1 +1,1 @@
-# python_codewars
+the project is aimed at solving problems of all levels of complexity using the CodeWars platform in Python
