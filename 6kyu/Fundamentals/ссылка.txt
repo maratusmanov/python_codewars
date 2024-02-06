@@ -1,0 +1,1 @@
+https://www.codewars.com/kata/search/my-languages?q=&r%5B%5D=-6&tags=Fundamentals&beta=false&order_by=popularity%20desc
