@@ -81,3 +81,71 @@ print(my_circle.get_radius())
 my_circle.radius = 76
 print(my_circle.radius)
 
+#13. методы класса  (параметр  cls)
+#14. статические методы
+#15. атрибут __class__
+#16. перегрузка инициализатора с помощью декоратора (@classmethod)
+# см карточки
+#17. использование декоратора @singledispatchmethod(создание функции одиночной диспетчеризации)
+
+class Person:
+    count = 0
+    #13
+    def __init__(self, name, age):
+        self._name = name
+        self._age = age
+        Person.count += 1
+    @classmethod
+    def get_info(cls):
+        return f"Total number of Person objects: {cls.count}"
+    #14
+    @staticmethod
+    def invert_number_person_1():
+        return 2 + 2
+
+
+#13
+person1 = Person("Alice", 24)
+person2 = Person("Marat", 20)
+#14
+print(Person.get_info())
+print(person2.invert_number_person_1())
+#15
+print(person1.__class__.__name__)
+
+#17
+from functools import singledispatchmethod
+class Square:
+    def __init__(self, side):
+        self._side = side
+
+class Circle:
+    def __init__(self, radius):
+        self._radius = radius
+class Triangle:
+    def __init__(self, base, height):
+        self._base = base
+        self._height = height
+
+class Calculate:
+    @singledispatchmethod
+    def calculate_area(self, shape):
+        raise NotImplementedError("error")
+    @calculate_area.register(Square)
+    def _(self, shape):
+        return shape._side ** 2
+    @calculate_area.register(Circle)
+    def _(self, shape):
+        return math.pi * shape._radius ** 2
+    @calculate_area.register(Triangle)
+    def _(self, shape):
+        return (shape._base * shape._height) / 2
+
+square = Square(5)
+circle = Circle(3)
+triangle = Triangle(4, 6)
+
+calculator = Calculate()
+print(calculator.calculate_area(square))
+print(calculator.calculate_area(circle))
+print(calculator.calculate_area(triangle))
