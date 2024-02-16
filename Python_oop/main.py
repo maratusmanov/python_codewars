@@ -41,3 +41,43 @@ setattr(car_trash, "year", 2005)
 print(getattr(car_trash, "year"))
 delattr(car_trash, "make")
 print(hasattr(car_trash, "make"))
+
+#6. методы экземпляра класса
+#7. геттеры
+#8. сеттеры
+#9. делиторы
+#10. свойства
+#11. функция property (fget, fset, fdel, doc)
+#12. декоратор @property (см. карточки)
+
+#6
+import math
+class Circle:
+    #6
+    def __init__(self, radius):
+        self._radius = radius
+    def area(self):
+        return math.pi * self._radius ** 2
+    def perimeter(self):
+        return 2 * math.pi * self._radius
+    #7, 8
+    def get_radius(self):
+        return self._radius
+    def set_radius(self, value):
+        self._radius = value
+    def del_radius(self):
+        del self._radius
+    #10, 11
+    radius = property(get_radius, set_radius, del_radius)
+#6
+my_circle = Circle(5)
+print(my_circle.area())
+print(my_circle.perimeter())
+#7, 8
+print(my_circle.get_radius())
+my_circle.set_radius(76)
+print(my_circle.get_radius())
+#10, 11
+my_circle.radius = 76
+print(my_circle.radius)
+
