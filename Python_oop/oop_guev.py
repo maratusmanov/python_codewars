@@ -253,33 +253,86 @@
 # самых коротких слов в наборе
 # • get_longest_words() — метод, возвращающий актуальный список
 # самых длинных слов в наборе
+#
+# class TextHandler:
+#     def __init__(self):
+#         self.text_ = []
+#
+#     def add_words(self, str_):
+#         self.text_.extend(str_.split())
+#         self.text_.sort(key=len)
+#         self.min_ = len(self.text_[0])
+#         self.max_ = len(self.text_[-1])
+#
+#     def get_shortest_words(self):
+#         return [i for i in self.text_ if len(i) == self.min_]
+#
+#     def get_longest_words(self):
+#         return [j for j in self.text_ if len(j) == self.max_]
+#
+#
+# handler = TextHandler()
+#
+# handler.add_words("Hello world")
+# handler.add_words("Python is amazing")
+#
+# shortest_words = handler.get_shortest_words()
+#
+# print(shortest_words)
+#
+# longest_words = handler.get_longest_words()
+#
+# print(longest_words)
 
-class TextHandler:
-    def __init__(self):
-        self.text_ = []
+# Реализуйте класс Todo , описывающий список дел. При создании экземпляра
+# класс не должен принимать никаких аргументов.
+# Экземпляр класса Todo должен иметь один атрибут:
+# • things — изначально пустой список дел, которые нужно выполнить
+# Класс Todo должен иметь четыре метода экземпляра:
+# • add() — метод, принимающий название дела и его приоритет (целое
+# число) и добавляющий данное дело в список дел в виде кортежа:
+# (<название дела>, <приоритет>)
+# • get_by_priority() — метод, принимающий в качестве аргумента целое
+# число n и возвращающий список названий дел, имеющих приоритет n
+# • get_low_priority() — метод, возвращающий список названий дел,
+# имеющих самый низкий приоритет
+# • get_high_priority() — метод, возвращающий список названий дел,
+# имеющих самый высокий приоритет
 
-    def add_words(self, str_):
-        self.text_.extend(str_.split())
-        self.text_.sort(key=len)
-        self.min_ = len(self.text_[0])
-        self.max_ = len(self.text_[-1])
+# class Todo:
+#     def __init__(self):
+#         self._things = []
+#     def add(self, thing, priority):
+#         self._things.append((thing, priority))
+#     def get_by_priority(self, n):
+#         list_priority = []
+#         for tuple in self._things:
+#             if tuple[1] == n:
+#                 list_priority.append(tuple[0])
+#         return list_priority
+#     def get_low_priority(self):
+#         list_tuple_1 = []
+#         for i in range(len(self._things)):
+#             list_tuple_1.append(self._things[i][1])
+#
+#         list_low_tuple_0 = []
+#         low_priority = min(list_tuple_1)
+#         for tuple in self._things:
+#             if tuple[1] == low_priority:
+#                 list_low_tuple_0.append(tuple[0])
+#         return list_low_tuple_0
+#     def get_hight_priority(self):
+#         list_tuple_1 = []
+#         for i in range(len(self._things)):
+#             list_tuple_1.append(self._things[i][1])
+#
+#         list_hight_tuple_0 = []
+#         hight_priority = max(list_tuple_1)
+#         for tuple in self._things:
+#             if tuple[1] == hight_priority:
+#                 list_hight_tuple_0.append(tuple[0])
+#         return list_hight_tuple_0
+#
+#     def get_things_priority(self):
+#         return self._things
 
-    def get_shortest_words(self):
-        return [i for i in self.text_ if len(i) == self.min_]
-
-    def get_longest_words(self):
-        return [j for j in self.text_ if len(j) == self.max_]
-
-
-handler = TextHandler()
-
-handler.add_words("Hello world")
-handler.add_words("Python is amazing")
-
-shortest_words = handler.get_shortest_words()
-
-print(shortest_words)
-
-longest_words = handler.get_longest_words()
-
-print(longest_words)
