@@ -22,4 +22,3 @@ my_list = [1, 3, 5, 7, 9, 11, 13, 15, 16, 17, 18, 36, 56, 68]
 
 print(binary_search(my_list, 15))  # Вывод: 1 (индекс элемента 3)
 #print(binary_search(my_list, -1))  # Вывод: None (элемент -1 не найден)
-
