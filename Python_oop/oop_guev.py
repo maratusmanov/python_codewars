@@ -579,3 +579,83 @@
 #         if not (isinstance(new_age, int) and (0 <= new_age <= 110)):
 #             raise ValueError('Некорректный возраст')
 #         self._age = new_age
+
+
+#Todo: свойства, функция property()
+
+# Реализуйте класс Rectangle , описывающий прямоугольник. При создании
+# экземпляра класс должен принимать два аргумента в следующем порядке:
+# • length — длина прямоугольника
+# • width — ширина прямоугольника
+# Экземпляр класса Rectangle должен иметь два атрибута:
+# • length — длина прямоугольника
+# • width — ширина прямоугольника
+# Класс Rectangle должен иметь два свойства:
+# • perimeter — свойство, доступное только для чтения, возвращающее
+# периметр прямоугольника
+# • area — свойство, доступное только для чтения, возвращающее площадь
+# прямоугольника
+
+# class Rectangle:
+#     def __init__(self, length, width):
+#         self._length = length
+#         self._width = width
+#     def get_perimeter(self):
+#         return (self._width + self._length) * 2
+#     def get_area(self):
+#         return self._width * self._length
+#     perimeter = property(get_perimeter)
+#     area = property(get_area())
+
+# Реализуйте класс HourClock , описывающий часы с одной лишь часовой
+# стрелкой. При создании экземпляра класс должен принимать один аргумент:
+# • hours — количество часов. Если hours не является целым числом,
+# принадлежащим диапазону [1; 12] , должно быть
+# возбуждено исключение ValueError с текстом:
+# Некорректное время
+# Класс HourClock должен иметь одно свойство:
+# • hours — свойство, доступное для чтения и записи,
+# возвращающее текущее количество часов. При изменении свойство
+# должно проверять, что новое значение является целым числом,
+# принадлежащим диапазону [1; 12] , в противном случае должно быть
+# возбуждено исключение ValueError с текстом:
+# Некорректное время
+
+# class HourClock:
+#     def __init__(self, hours):
+#         if not isinstance(hours, int):
+#             raise ValueError("error hours")
+#         if not (1 <= hours <= 12):
+#             raise ValueError("error hours")
+#         self._hours = hours
+#     def get_hours(self):
+#         return self._hours
+#     def set_hours(self, new_hours):
+#         if not isinstance(new_hours, int) or not (0 < new_hours <= 12):
+#             raise ValueError('error hours')
+#         self._hours = new_hours
+#     hours = property(get_hours, set_hours)
+
+# Реализуйте класс Person , описывающий человека. При создании экземпляра
+# класс должен принимать два аргумента в следующем порядке:
+# • name — имя человека
+# • surname — фамилия человека
+# Экземпляр класса Person должен иметь два атрибута:
+# • name — имя человека
+# • surname — фамилия человека
+# Класс Person должен иметь одно свойство:
+# • fullname — свойство, доступное для чтения и записи, возвращающее
+# полное имя человека в виде строки:
+# <имя> <фамилия>
+
+# class Person:
+#     def __init__(self, name, surname):
+#         self._name = name
+#         self._surname = surname
+#     def get_fullname(self):
+#         return f"<{self._name}> <{self._surname}>"
+#     def set_fullname(self, fullname):
+#         total_list = fullname.split()
+#         self._name = total_list[0]
+#         self._surname = total_list[1]
+#     fullname = property(get_fullname, set_fullname)
