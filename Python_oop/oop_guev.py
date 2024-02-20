@@ -659,3 +659,214 @@
 #         self._name = total_list[0]
 #         self._surname = total_list[1]
 #     fullname = property(get_fullname, set_fullname)
+
+#Todo : декоратор @property =>
+
+# Вам доступен класс Person , описывающий человека. При создании экземпляра
+# класс принимает два аргумента в следующем порядке:
+# • name — имя человека
+# • surname — фамилия человека
+# Экземпляр класса Person имеет два атрибута:
+# • name — имя человека
+# • surname — фамилия человека
+# Класс Person имеет одно свойство:
+# • fullname — свойство, доступное для чтения и записи, возвращающее
+# полное имя человека в виде строки:
+# <имя> <фамилия>
+# Реализуйте свойство fullname класса Person с помощью
+# декоратора @property
+
+# class Person:
+#     def __init__(self, name, surname):
+#         self._name = name
+#         self._surname = surname
+#     @property
+#     def fullname(self):
+#         return f"<{self._name}> <{self._surname}>"
+#     @property.setter
+#     def fullname(self, fullname):
+#         total_list = fullname.split()
+#         self._name = total_list[0]
+#         self._surname = total_list[1]
+
+# В целях безопасности в базах данных пароли от аккаунтов пользователей
+# хранятся не в явном виде, а в виде хеш-значений — чисел, вычисленных по
+# специальному алгоритму на основе паролей.
+# Вам доступна функция hash_function() , которая принимает в качестве
+# аргумента пароль и возвращает его хеш-значение.
+# Реализуйте класс Account , описывающий аккаунт интернет-пользователя на
+# некотором сервисе. При создании экземпляра класс должен принимать два
+# аргумента в следующем порядке:
+# • login — логин пользователя
+# • password — пароль пользователя
+# Класс Account должен иметь два свойства:
+# • login — свойство, доступное только для чтения, возвращающее логин
+# пользователя. При попытке изменения свойство должно быть возбуждено
+# исключение AttributeError с текстом:
+# Изменение логина невозможно
+# • password — свойство, доступное для чтения и записи, возвращающее
+# хеш-значение пароля от аккаунта пользователя. При изменении свойство
+# должно вычислять хеш-значение нового пароля и сохранять его, а не сам
+# пароль
+#
+# def hash_function(password):
+#     hash_value = 0
+#     for char, index in zip(password, range(len(password))):
+#         hash_value += ord(char) * index
+#     return hash_value % 10 ** 9
+#
+# class Account:
+#     def __init__(self, login, password):
+#         self._login = login
+#         self._password = password
+#     @property
+#     def login(self):
+#         return self._login
+#     @property.setter
+#     def login(self, new_login):
+#         raise AttributeError('Изменение логина невозможно')
+#     @property
+#     def password(self):
+#         return self._password
+#     @property.setter
+#     def password(self, new_password):
+#         self._password = hash_function(new_password)
+#     password = property(password, login)
+
+# Для кодирования цвета часто используется шестнадцатеричное значение цвета.
+# Оно записывается в формате #RRGGBB , где RR (красный), GG (зеленый)
+# и BB (синий) являются шестнадцатеричными целыми числами в
+# диапазоне [00; FF] (или [0; 255] в десятичной системе счисления), которые
+# указывают интенсивность соответствующих
+# цветов. Например, #0000FF представляет чистый синий цвет, так как синий
+# компонент имеет наивысшее значение ( FF ), а остальные — 00 .
+# Реализуйте класс Color , описывающий цвет. При создании экземпляра класс
+# должен принимать один аргумент:
+# • hexcode — шестнадцатеричное значение цвета
+# Экземпляр класса Color должен иметь три атрибута:
+# • r — интенсивность красного компонента цвета в виде десятичного числа
+# • g — интенсивность зеленого компонента цвета в виде десятичного числа
+# • b — интенсивность синего компонента цвета в виде десятичного числа
+# Класс Color должен иметь одно свойство:
+# • hexcode — свойство, доступное для чтения и записи, возвращающее
+# шестнадцатеричное значение цвета
+
+# class Color:
+#     def __init__(self, hexcode):
+#         self._hexcode = hexcode
+#     @property.getter
+#     def hexcode(self):
+#         return self._hexcode
+#     @hexcode.setter
+#     def hexcode(self, hexcode):
+#         self._hexcode = hexcode
+#         self.r = int(hexcode[0:2], 16)
+#         self.g = int(hexcode[2:4], 16)
+#         self.b = int(hexcode[4:6], 16)
+
+
+#Todo: декоратор @classmethod =>
+
+# Реализуйте класс Circle , описывающий круг. При создании экземпляра класс
+# должен принимать один аргумент:
+# • radius — радиус круга
+# Экземпляр класса Circle должен иметь один атрибут:
+# • radius — радиус круга
+# Класс Circle должен иметь один метод класса:
+# • from_diameter() — метод, принимающий в качестве аргумента диаметр
+# круга и возвращающий экземпляр класса Circle , созданный на основе
+# переданного диаметра
+
+# class Circle:
+#     def __init__(self, radius):
+#         self._radius = radius
+#     @classmethod
+#     def from_diameter(cls, diameter):
+#         return cls(diameter / 2)
+
+# Реализуйте класс Rectangle , описывающий прямоугольник. При создании
+# экземпляра класс должен принимать два аргумента в следующем порядке:
+# • length — длина прямоугольника
+# • width — ширина прямоугольника
+# Экземпляр класса Rectangle должен иметь два атрибута:
+# • length — длина прямоугольника
+# • width — ширина прямоугольника
+# Класс Rectangle должен иметь один метод класса:
+# • square() — метод, принимающий в качестве аргумента число side и
+# возвращающий экземпляр класса Rectangle c длиной и шириной,
+# равными side
+#
+# class Rectangle:
+#     def __init__(self, length, width):
+#         self._length = length
+#         self._width = width
+#     @classmethod
+#     def square(cls, side):
+#         return cls(side, side)
+
+# Реализуйте класс Pet , описывающий домашнее животное. При создании
+# экземпляра класс должен принимать один аргумент:
+# • name — имя домашнего животного
+# Экземпляр класса Pet должен иметь один атрибут:
+# • name — имя домашнего животного
+# Класс Pet должен иметь три метода класса:
+# • first_pet() — метод, возвращающий самый первый созданный
+# экземпляр класса Pet . Если ни одного экземпляра еще не было создано,
+# метод должен вернуть значение None
+# • last_pet() — метод, возвращающий самый последний созданный
+# экземпляр класса Pet . Если ни одного экземпляра еще не было создано,
+# метод должен вернуть значение None
+# • num_of_pets() — метод, возвращающий количество созданных
+# экземпляров класса Pet
+
+# class Pet:
+#     pets = []
+#     def __init__(self, name):
+#         self._name = name
+#         Pet.pets.append(self)
+#     @classmethod
+#     def first_pet(cls):
+#         if cls.pets:
+#             return cls.pets[0]
+#         else:
+#             return None
+#     @classmethod
+#     def last_pet(cls):
+#         if cls.pets:
+#             return cls.pets[len(cls.pets) - 1]
+#         else:
+#             return None
+#     @classmethod
+#     def num_of_pets(cls):
+#         return len(cls.pets)
+
+# Реализуйте класс StrExtension , описывающий набор функций для работы со
+# строками. При создании экземпляра класс не должен принимать никаких
+# аргументов.
+# Класс StrExtension должен иметь три статических метода:
+# • remove_vowels() — метод, который принимает в качестве аргумента
+# строку, удаляет из нее все гласные латинские буквы без учета регистра и
+# возвращает полученный результат
+# • leave_alpha() — метод, который принимает в качестве аргумента
+# строку, удаляет из нее все символы, не являющиеся латинскими буквами, и
+# возвращает полученный результат
+# • replace_all() — метод, который принимает три строковых
+# аргумента string, chars и char , заменяет в строке string все
+# символы из chars на char с учетом регистра и возвращает полученный
+# результат
+
+# import re
+# class StrExtension:
+#     __VOWELS = re.compile(r'[aeiouy]', flags=re.I)
+#     __ALPHABET = re.compile(r'[^a-zA-Z]')
+#
+#     @staticmethod
+#     def remove_vowels(string):
+#         return StrExtension.__VOWELS.sub('', string)
+#     @staticmethod
+#     def leave_alpha(string):
+#         return StrExtension.__ALPHABET.sub('', string)
+#     @staticmethod
+#     def replace_all(string, chars, char):
+#         return re.sub(fr'[{chars}]', char, string)
+
