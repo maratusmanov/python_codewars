@@ -870,3 +870,213 @@
 #     def replace_all(string, chars, char):
 #         return re.sub(fr'[{chars}]', char, string)
 
+#Todo: декоратор @singledispatchmethod =>
+
+# Вам доступен класс Processor . При создании экземпляра класс не принимает
+# никаких аргументов.
+# Класс Processor имеет один статический метод:
+# • process() — метод, который принимает в качестве аргумента
+# произвольный объект, преобразует его в зависимости от его типа и
+# возвращает полученный результат. Если тип переданного объекта не
+# поддерживается методом, возбуждается исключение TypeError с
+# текстом:
+# Аргумент переданного типа не поддерживается
+# Перепишите метод process() класса Processor с использованием
+# декоратора @singledispatchmethod , чтобы он выполнял ту же задачу.
+
+#todo ,,,
+#Todo Магические методы. Создание, инициализация и очищение объектов =>
+
+
+# Реализуйте класс Config , который соответствует шаблону синглтон и
+# описывает конфигурационный объект с фиксированными параметрами. При
+# создании экземпляра класс не должен принимать никаких аргументов.
+# При первом вызове конструктора класса Config должен создаваться и
+# возвращаться экземпляр этого класса, а при последующих вызовах должен
+# возвращаться экземпляр, созданный при первом вызове.
+# Экземпляр класса Config должен иметь четыре атрибута:
+# • program_name — атрибут со строковым значением GenerationPy
+# • environment — атрибут со строковым значением release
+# • loglevel — атрибут со строковым значением verbose
+# • version — атрибут со строковым значением 1.0.0
+#singleton
+# class Config:
+#     _instance = None
+#     def __new__(cls, *args, **kwargs):
+#         if cls._instance is None:
+#             cls._instance = object.__new__(cls)
+#         return cls._instance
+#     def __init__(self):
+#         self.program_name = "GenerationPay"
+#         self.inviroment = "release"
+#         self.loglevel = "verbose"
+#         self.version = "1.0.0"
+#
+# config1 = Config()
+# config2 = Config()
+#
+#
+# print(config1.program_name)
+
+#Todo Магические методы. Строковое представление объектов =>
+
+# Требовалось реализовать класс Book , описывающий книгу. При создании
+# экземпляра класс должен был принимать три аргумента в следующем порядке:
+# • title — название книги
+# • author — автор книги
+# • year — год выпуска книги
+# Предполагалось, что экземпляры класса Book будут иметь следующее
+# формальное строковое представление:
+# Book('<название книги>', '<автор книги>', <год выпуска книги>)
+# И следующее неформальное строковое представление:
+# <название книги> (<автор книги>, <год выпуска книги>)
+# Программист торопился и решил задачу неправильно. Исправьте приведенный
+# ниже код и реализуйте класс Book правильно
+
+# class Book:
+#     def __init__(self, title, author, year):
+#         self._title = title
+#         self._author = author
+#         self._year = year
+#     def __str__(self):
+#         return f"<{self._title}> <{self._author}> <{self._year}>"
+#     def __repr__(self):
+#         return f"Book(\'{self._title}\', \'{self._author}\', \'{self._year}\')"
+#
+# book = Book("aaa", "bbb", 2024)
+#
+# print(book)
+# print(repr(book))
+
+# Вам доступен класс Rectangle , описывающий прямоугольник. При создании
+# экземпляра класс принимает два аргумента в следующем порядке:
+# • length — длина прямоугольника
+# • width — ширина прямоугольника
+# Реализуйте для экземпляров класса Rectangle следующее формальное и
+# неформальное строковое представление:
+# Rectangle(<длина прямоугольника>, <ширина прямоугольника>)
+
+# class Rectangle:
+#     def __init__(self, length, width):
+#         self._length = length
+#         self._width = width
+#     def __str__(self):
+#         return f"Rectangle({self._length}, {self._width})"
+#     def __repr__(self):
+#         return f"Rectangle({self._length}, {self._width}) => repr"
+#
+
+# Реализуйте класс Vector , описывающий вектор на плоскости. При создании
+# экземпляра класс должен принимать два аргумента в следующем порядке:
+# • x — координата вектора по оси x
+# • y — координата вектора по оси y
+# Экземпляр класса Vector должен иметь следующее формальное строковое
+# представление:
+# Vector(<координата x>, <координата y>)
+# И следующее неформальное строковое представление:
+# Вектор на плоскости с координатами (<координата x>, <координата y>)
+
+# class Vector:
+#     def __init__(self, x = 0, y = 0):
+#         self._x = x
+#         self._y = y
+#     def __str__(self):
+#         return f"Vector(<{self._x}>, <{self._y}>)"
+#     def __repr__(self):
+#         return f"<координата {self._x}>, <координата {self._y}>"
+
+# IP-адрес — это уникальный адрес, идентифицирующий устройство в интернете
+# или локальной сети. IP-адреса представляют собой набор из четырех целых
+# чисел, разделенных точками. Например, 192.158.1.38 . Каждое число в наборе
+# принадлежит интервалу от 0 до 255 . Таким образом, полный диапазон IPадресации — это адреса от 0.0.0.0 до 255.255.255.255 .
+# Реализуйте класс IPAddress , описывающий IP-адрес. При создании экземпляра
+# класс должен принимать один аргумент:
+# • ipaddress — IP-адрес, представленный в одном из следующих вариантов:
+# 1. строка из четырех целых чисел, разделенных точками
+# 2. список или кортеж из четырех целых чисел
+# Экземпляр класса IPAddress должен иметь следующее формальное строковое
+# представление:
+# IPAddress('<IP-адрес в виде четырех целых чисел, разделенных
+# точками>')
+# И следующее неформальное строковое представление:
+# <IP-адрес в виде четырех целых чисел, разделенных точками>
+#
+# class IPAddress:
+#     def __init__(self, ipadress):
+#         if isinstance(ipadress, str):
+#             self.ipadress = ipadress
+#         elif isinstance(ipadress, (list, tuple)):
+#             self.ipadress = '.'.join(map(str, ipadress))
+#     def __str__(self):
+#         return self.ipadress
+#     def __repr__(self):
+#         return f"{self.__class__.__name__}('{self.ipadress}')"
+
+# Реализуйте класс PhoneNumber , описывающий телефонный номер. При создании
+# экземпляра класс должен принимать один аргумент:
+# • phone_number — телефонный номер, представляющий строку из десяти
+# цифр в одном из следующих форматов:
+# 1. dddddddddd
+# 2. ddd ddd dddd
+# Экземпляр класса PhoneNumber должен иметь следующее формальное строковое
+# представление:
+# PhoneNumber('<телефонный номер в формате dddddddddd>')
+# И следующее неформальное строковое представление:
+# <телефонный номер в формате (ddd) ddd-dddd>
+#
+# import re
+# class PhoneNumber:
+#     def __init__(self, phone_number):
+#         pattern = r'^(\d{10})|(\d{3}\s\d{3}\s\d{4})$'
+#         if re.match(pattern, phone_number):
+#             self._phone_number = phone_number
+#         else:
+#             raise ValueError("error")
+#     def __str__(self):
+#         pattern = r'^\d{10}$'
+#         if re.match(pattern, self._phone_number):
+#             return f"PhoneNumber(\'<{self._phone_number}>\')"
+#         else:
+#             new_phone_number = re.sub(r'\s', '', self._phone_number)
+#             return f"PhoneNumber(\'<{new_phone_number}>\')"
+#     def __repr__(self):
+#         pattern = r'^\d{10}$'
+#         if re.match(pattern, self._phone_number):
+#             formatted_phone_number = re.findall(r'\d{3}|\d{4}', self._phone_number)
+#             return f"({formatted_phone_number[0]}) {formatted_phone_number[1]}-{formatted_phone_number[2]}"
+#         else:
+#             phone_number_array = self._phone_number.split()
+#             return f"({phone_number_array[0]}) {phone_number_array[1]}-{phone_number_array[2]}"
+#
+# phone = PhoneNumber('9285936260')
+# print(phone)
+# print(repr(phone))
+#
+# phone2 = PhoneNumber('928 593 6260')
+# print(phone2)
+# print(repr(phone2))
+
+# Реализуйте класс AnyClass . При создании экземпляра класс должен принимать
+# произвольное количество именованных аргументов и устанавливать их в
+# качестве атрибутов создаваемому экземпляру.
+# `Экземпляр класса AnyClass должен иметь следующее формальное строковое
+# представление:
+# AnyClass(<имя 1-го атрибута>=<значение 1-го атрибута>, <имя 2-го
+# атрибута>=<значение 2-го атрибута>, ...)`
+# И следующее неформальное строковое представление:
+# AnyClass: <имя 1-го атрибута>=<значение 1-го атрибута>, <имя 2-го
+# атрибута>=<значение 2-го атрибута>, ...
+#
+# class AnyClass:
+#     def __init__(self, **kwargs):
+#         for key, value in kwargs.items():
+#             setattr(self, key, value)
+#     def __str__(self):
+#         attributes = ""
+#         for attr, value in vars(self).items():
+#             attributes += f"{attr}={value}"
+#         attributes = attributes.rstrip(", ")
+#         return f"AnyClass({attributes})"
+#
+# string = AnyClass(name="John", age=30, city="New York", language="Python", version="3.10", framework="Django")
+# print(string)
