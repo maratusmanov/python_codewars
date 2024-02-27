@@ -1096,16 +1096,242 @@
 # сравнения, должны уметь сравнивать как два вектора между собой, так и вектор с
 # кортежем из двух чисел, представляющих координаты x и y.
 
-class Vector:
-    def __init__(self, x = 0, y = 0):
-        self._x = x
-        self._y = y
-    def get_tuple_coordinate(self):
-        return (self._x, self._y)
-    def __repr__(self):
-        return f"Vector({self._x}, {self._y})"
-    def __eq__(self):
+# class Vector:
+#     def __init__(self, x = 0, y = 0):
+#         self._x = x
+#         self._y = y
+#     def get_tuple_coordinate(self):
+#         return (self._x, self._y)
+#     def __repr__(self):
+#         return f"Vector({self._x}, {self._y})"
+#     def __eq__(self, other):
+#         if isinstance(other, Vector):
+#             return self.get_tuple_coordinate() == other.get_tuple_coordinate()
+#         if isinstance(other, tuple):
+#             return self.get_tuple_coordinate() == other
+#         return NotImplemented
+#
+# vector1 = Vector(1, 2)
+# vector2 = Vector(1, 2)
+#
+# print(vector1.get_tuple_coordinate())
+# print(vector2.get_tuple_coordinate())
+#
+# print(vector1 == vector2)
 
+# Будем называть словом любую последовательность из одной или более
+# латинских букв.
+# Реализуйте класс Word , описывающий слово. При создании экземпляра класс
+# должен принимать один аргумент:
+# • word — слово
+# Экземпляр класса Word должен иметь следующее формальное строковое
+# представление:
+# Word('<слово в исходном виде>')
+# И следующее неформальное строковое представление:
+# <слово, в котором первая буква заглавная, а все остальные строчные>
+# Также экземпляры класса Word должны поддерживать между собой все
+# операции сравнения с помощью операторов ==, !=, >, <, >=, <= . Два
+# слова считаются равными, если их длины совпадают. Слово считается больше
+# другого слова, если его длина больше.
 
-vector1 = Vector(1, 2)
+# class Word:
+#     def __init__(self, word):
+#         self._word = word
+#     def __str__(self):
+#         return f"Word(\'<{self._word}>\')"
+#     def __repr__(self):
+#         return self._word.capitalize()
+#     def __eq__(self, other):
+#         if isinstance(other, Word):
+#             return other._word == self._word or self._word == other._word
+#         return NotImplemented
+#     def __ne__(self, other):
+#         if isinstance(other, Word):
+#             return other._word != self._word or self._word != other._word
+#         return NotImplemented
+#
+# word = Word("ghghhg")
+# print(word)
+# word2 = Word("ghghhg")
+#
+# print(word != word2)
 
+# Реализуйте класс Month , описывающий месяц. При создании экземпляра класс
+# должен принимать два аргумента в следующем порядке:
+# • year — год
+# • month — порядковый номер месяца
+# Экземпляр класса Month должен иметь следующее формальное строковое
+# представление:
+# Month(<год>, <порядковый номер месяца>)
+# И следующее неформальное строковое представление:
+# <год>-<порядковый номер месяца>
+# Также экземпляры класса Month должны поддерживать все операции сравнения
+# с помощью операторов ==, !=, >, <, >=, <= . Два Month объекта считаются
+# равными, если их годы и порядковые номера месяцев совпадают. Month объект
+# считается больше другого Month объекта, если его год больше. В случае если
+# два Month объекта имеют равные года, большим считается тот, чей месяц
+# больше. Методы, реализующие операции сравнения, должны уметь сравнивать
+# как два Month объекта между собой, так и Month объект с кортежем из двух
+# чисел, представляющих год и месяц.
+
+# class Month:
+#     def __init__(self, year, month):
+#         self._year = year
+#         self._month = month
+#     def __str__(self):
+#         return f"Month({self._year}, {self._month})"
+#     def __repr__(self):
+#         return f"<{self._year}>-<{self._month}>"
+#     def fields(self):
+#         return (self._year, self._month)
+#     def __eq__(self, other):
+#         if isinstance(other, Month):
+#             return other.fields() == self.fields() or self.fields() == other.fields()
+#         return NotImplemented
+#
+#     ...
+# month = Month(1999, 12)
+# print(month)
+
+#...
+
+#Todo: Магические методы. Унарные операторы =>
+
+# Реализуйте класс ReversibleString , описывающий строку. При создании
+# экземпляра класс должен принимать один аргумент:
+# • string — значение строки
+# Экземпляр класса ReversibleString должен иметь следующее неформальное
+# строковое представление:
+# <значение строки>
+# Также экземпляр класса ReversibleString должен поддерживать унарный
+# оператор - , результатом которого должен являться новый экземпляр
+# класса ReversibleString со значением строки в обратном порядке.
+
+#
+# class ReversibleString:
+#     def __init__(self, string):
+#         self._string = string
+#     def __repr__(self):
+#         return f"<{self._string}>"
+#     def __neg__(self):
+#         neg_string = self._string[::-1]
+#         return ReversibleString(neg_string)
+#
+# reverse = ReversibleString("marat")
+# print(repr(reverse))
+# reverse_string = -reverse
+# print(reverse_string)
+
+# Реализуйте класс Money , описывающий денежную сумму в рублях. При создании
+# экземпляра класс должен принимать один аргумент:
+# • amount — количество денег
+# Экземпляр класса Money должен иметь следующее неформальное строковое
+# представление:
+# <количество денег> руб.
+# Также экземпляр класса Money должен поддерживать унарные
+# операторы + и - :
+# • результатом унарного + должен являться новый экземпляр
+# класса Money с неотрицательным количеством денег
+# • результатом унарного - должен являться новый экземпляр
+# класса Money с отрицательным количеством денег
+
+# class Money:
+#     def __init__(self, amount):
+#         self._amount = amount
+#     def __repr__(self):
+#         return f"<{self._amount}> руб."
+#     def __pos__(self):
+#         return Money(abs(self._amount))
+#     def __neg__(self):
+#         return Money(-abs(self._amount))
+
+# Реализуйте класс Vector , описывающий вектор на плоскости. При создании
+# экземпляра класс должен принимать два аргумента в следующем порядке:
+# • x — координата вектора по оси x
+# • y — координата вектора по оси y
+# Экземпляр класса Vector должен иметь следующее формальное строковое
+# представление:
+# Vector(<координата x>, <координата y>)
+# И следующее неформальное строковое представление:
+# (<координата вектора по оси x>, <координата вектора по оси y>)
+# Также экземпляр класса Vector должен поддерживать унарные
+# операторы + и - :
+# • результатом унарного + должен являться новый экземпляр
+# класса Vector с исходными координатами
+# • результатом унарного - должен являться новый экземпляр
+# класса Vector с координатами, взятыми с противоположным знаком
+# Наконец, при передаче экземпляра класса Vector в функцию abs() должен
+# возвращаться его модуль
+
+# class Vector:
+#     def __init__(self, x, y):
+#         self._x = x
+#         self._y = y
+#     def __str__(self):
+#         return f"Vector(<координата {self._x}><координата {self._y}>)"
+#     def fields(self):
+#         return (self._x, self._y)
+#     def __pos__(self):
+#         return self.fields()
+#     def __neg__(self):
+#         return Vector(-self.x, -self.y)
+#     def __abs__(self):
+#         return (self.x ** 2 + self.y ** 2) ** 0.5
+
+#todo : ...
+
+#Todo: Магические методы. Арифметические операторы =>
+
+# Реализуйте класс FoodInfo , описывающий пищевую ценность продуктов. При
+# создании экземпляра класс должен принимать три аргумента в следующем
+# порядке:
+# • proteins — количество белков в граммах
+# • fats — количество жиров в граммах
+# • carbohydrates — количество углеводов в граммах
+# Экземпляр класса FoodInfo должен иметь три атрибута:
+# • proteins — количество белков в граммах
+# • fats — количество жиров в граммах
+# • carbohydrates — количество углеводов в граммах
+# И следующее формальное строковое представление:
+# FoodInfo(<количество белков>, <количество жиров>, <количество
+# углеводов>)
+# Также экземпляры класса FoodInfo должны поддерживать между собой
+# операцию сложения с помощью оператора + , результатом которой должен
+# являться новый экземпляр класса FoodInfo с суммарным количеством белков,
+# жиров и углеводов исходных экземпляров.
+# Наконец, экземпляр класса FoodInfo должен поддерживать операции
+# умножения, деления и деления нацело на число n с помощью операторов *,
+# / и // соответственно:
+# • результатом умножения должен являться новый экземпляр
+# класса FoodInfo , количество белков, жиров и углеводов которого
+# умножены на n
+# • результатом деления должен являться новый экземпляр
+# класса FoodInfo , количество белков, жиров и углеводов которого
+# поделены на n
+# • результатом деления нацело должен являться новый экземпляр
+# класса FoodInfo , количество белков, жиров и углеводов которого
+# поделены нацело на n
+
+# class FoodInfo:
+#     def __init__(self, proteins, fats, carbohydrates):
+#         self._proteins = proteins
+#         self._fats = fats
+#         self._carbohydrates = carbohydrates
+#     def __str__(self):
+#         return f"FoodInfo(<{self._proteins}>, <{self._fats}>, <{self._carbohydrates}>)"
+#     def __add__(self, other):
+#         if isinstance(other, FoodInfo):
+#             return FoodInfo(self._proteins + other._proteins, self._fats + other._fats, self._carbohydrates + other._carbohydrates)
+#         return NotImplemented
+#     def __mul__(self, n):
+#         if isinstance(n, int) or isinstance(n, float):
+#             return FoodInfo(self._proteins * n, self._fats * n, self._carbohydrates * n)
+#         return NotImplemented
+#     def __truediv__(self, n):
+#         if isinstance(n, int) or isinstance(n, float):
+#             return FoodInfo(self._proteins / n, self._fats / n, self._carbohydrates / n)
+#         return NotImplemented
+#     def __floordiv__(self, n):
+#         if isinstance(n, int) or isinstance(n, float):
+#             return FoodInfo(self._proteins // n, self._fats // n, self._carbohydrates // n)
+#         return NotImplemented
