@@ -1,4 +1,6 @@
 #Todo : методы экземпляра класса =>
+import datetime
+
 
 # Реализуйте класс PiggyBank , а затем создайте экземпляр этого класса и
 # присвойте его переменной money_box .
@@ -1494,3 +1496,110 @@
 #         return NotImplemented
 
 #Todo: Магические методы. Вызываемые объекты
+
+# Реализуйте класс Calculator , экземпляры которого позволяют выполнять
+# различные арифметические операции с двумя числами. При создании экземпляра
+# класс не должен принимать никаких аргументов.
+# Экземпляр класса Calculator должен являться вызываемым объектом и
+# принимать три аргумента:
+# • a — число
+# • b — число
+# • operation — один из символов +, -, * и /
+# Если operation равняется + , экземпляр класса Calculator должен вернуть
+# сумму a и b , если - — разность a и b , если * —
+# произведение a и b , если / — частное a и b . При попытке выполнить деление
+# на ноль должно быть возбуждено исключение ValueError с текстом:
+# Деление на ноль невозможно
+
+# class Calculator:
+#     def __call__(self, a, b, operation):
+#         match operation:
+#             case '+':
+#                 return a + b
+#             case '-':
+#                 return a - b
+#             case '*':
+#                 return a * b
+#             case '/':
+#                 if b == 0:
+#                     raise ValueError('Деление на ноль невозможно')
+#                 return a / b
+
+# Реализуйте класс RaiseTo , экземпляры которого позволяют возводить числа в
+# фиксированную степень. При создании экземпляра класс должен принимать один
+# аргумент:
+# • degree — показатель степени
+# Экземпляр класса RaiseTo должен являться вызываемым объектом и
+# принимать один аргумент:
+# • x — число
+# Экземпляр класса RaiseTo должен возвращать значение x в степени degree .
+
+# class RaiseTo:
+#     def __init__(self, degree):
+#         self._degree = degree
+#     def __call__(self, x):
+#         return x ** self._degree
+
+# Реализуйте класс Dice , описывающий игральный кубик с определенным
+# количеством граней. При создании экземпляра класс должен принимать один
+# аргумент:
+# • sides — количество граней игрального кубика
+# Экземпляр класса Dice должен являться вызываемым объектом и не принимать
+# никаких аргументов. При вызове он должен возвращать значение
+# случайной грани игрального кубика. Например, если кубик имеет 6 граней,
+# экземпляр класса Dice должен вернуть случайное число из диапазона [1; 6]
+#
+# from random import randint
+# class Dice:
+#     def __init__(self, sides):
+#         self._sides = sides
+#     def __call__(self):
+#         return randint(1, self.sides)
+
+# Реализуйте класс DateFormatter , экземпляры которого позволяют
+# преобразовывать даты в формат определенной страны из таблицы выше. При
+# создании экземпляра класс должен принимать один аргумент:
+# • country_code — код страны
+# Экземпляр класса DateFormatter должен являться вызываемым объектом и
+# принимать один аргумент:
+# • d — дата (тип date )
+# Экземпляр класса DateFormatter должен возвращать строку с датой d в
+# формате страны с кодом country_code .
+
+# import datetime
+#
+# class DateFormatter:
+#     def __init__(self, country_code):
+#         if isinstance(country_code, str):
+#             self._country_code = country_code
+#         else:
+#             raise ValueError("Неверный формат кода страны")
+#
+#     def __call__(self, date: datetime.date):
+#         if not hasattr(self, '_country_code'):
+#             raise ValueError("Код страны не установлен")
+#
+#         if not isinstance(date, datetime.date):
+#             raise ValueError("Входной аргумент не является объектом datetime.date")
+#
+#         date_list = [date.year, date.month, date.day]
+#         if self._country_code == 'ru':
+#             return f"{date_list[2]}.{date_list[1]}.{date_list[0]}"
+#         elif self._country_code == 'us':
+#             return f"{date_list[1]}-{date_list[2]}-{date_list[0]}"
+#         elif self._country_code == 'ca':
+#             return f"{date_list[0]}-{date_list[1]}-{date_list[2]}"
+#         elif self._country_code == 'br':
+#             return f"{date_list[2]}/{date_list[1]}/{date_list[0]}"
+#         elif self._country_code == 'fr':
+#             return f"{date_list[2]}.{date_list[1]}.{date_list[0]}"
+#         elif self._country_code == 'pt':
+#             return f"{date_list[2]}-{date_list[1]}-{date_list[0]}"
+#         else:
+#             raise ValueError("Неверный код страны")
+# time_formatter = DateFormatter('')
+# formatted_date = time_formatter(datetime.date(2022, 11, 7))
+# print(formatted_date)
+
+#....
+
